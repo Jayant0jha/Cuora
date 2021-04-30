@@ -1,0 +1,42 @@
+
+<div class="container my-lg-5">
+<div class="d-flex justify-content-center h-100">
+    <div class="card">
+        <img src="/assets/disc.jpg" style="height: 340px;" >
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 style="color: indigo;">Sign In</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-envelope" style="color:white"></i></span>
+                    </div>
+                    <input [(ngModel)]="email" type="email" class="form-control" name="emailID" placeholder="Email ID">
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-key" style="color:white"></i></span>
+                    </div>
+                    <input [(ngModel)]="password" type="password" class="form-control" name="pwd"  placeholder="Password">
+                </div>
+                
+                <div class="form-group">
+                    <button (click)="SignIn()" type="submit" class="btn float-right">Login</button>
+                </div>
+            </form>
+    
+        </div>
+        
+        <div class="card-footer">
+            <div class="d-flex justify-content-center links">
+                Don't have an account?<a routerLink="/signup">Sign Up</a>
+            
+        </div>
+        </div>
+    </div>
+
+</div>
+</div>
