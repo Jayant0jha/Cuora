@@ -12,6 +12,8 @@ export class SigninComponent implements OnInit {
   
   email=""
   password=""
+  hide = true;
+  
   constructor(public auth: AuthServiceService, public route: Router) { }
 
   ngOnInit() {

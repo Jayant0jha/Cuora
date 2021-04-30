@@ -44,3 +44,17 @@ button {
     background-color: slateblue;
     color: white;
 }
+
+mat-form-field {
+    width: 400px
+}
+
+mat-raised-button{
+    margin: 0 auto;
+    display: flex;
+}
+
+.student-container {
+    justify-content: center;
+    text-align: center;
+}

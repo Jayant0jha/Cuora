@@ -2,7 +2,7 @@
 
 <div class="container my-lg-5">
 	<div class="d-flex justify-content-center h-100">
-		<div>
+		<!-- <div>
 			<img src="/assets/disc.jpg" style="height: 340px;">
 		</div>
 		<div class="card">
@@ -34,9 +34,54 @@
                 
             </div>
 
-		</div>
+		</div> -->
+
+		<div class="student-container">
+			
+			<mat-form-field appearance="fill">
+			  <mat-label>Student Name</mat-label>
+			  <input matInput [(ngModel)]="user.Name">
+			</mat-form-field>
+			<br>
+			
+			<mat-form-field appearance="fill">
+			  <mat-label>Enrolment Year</mat-label>
+			  <input matInput type="number" [(ngModel)]="user.Enrol_year">
+			</mat-form-field>
+			<br>
+			<mat-form-field appearance="fill">
+			  <mat-label>Department</mat-label>
+			  <mat-select [(ngModel)]="user.Department">
+				<mat-option *ngFor="let d of dep" [value]="d.value" >
+					{{d.viewValue}}
+				</mat-option>
+			  </mat-select>
+			</mat-form-field>
+			<br>
+			<mat-form-field appearance="fill">
+				<mat-label>Email</mat-label>
+				<input matInput type="email" [(ngModel)]="email">
+			</mat-form-field>
+			<br>
+			<mat-form-field appearance="fill">
+				<mat-label>Password</mat-label>
+				<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+				<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+				
+			</mat-form-field>
+			<br>
+		  
+			<section>
+			  <div class="example-button-row">
+				<button style="background-color: slateblue;" mat-raised-button color="primary" (click)="SignUp()">Signup</button>
+			  </div>
+			</section>
+		  </div>
+
 	</div>
 </div>
+
+
 
 <!-- 
 name

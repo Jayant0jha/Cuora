@@ -28,8 +28,6 @@ export class AuthServiceService {
       this.isSignedIn = true
       this.loggedInUserId  = res.user.uid
       this.router.navigateByUrl("/home")
-      
-
     })
 
     .catch(res=>{
@@ -55,10 +53,13 @@ export class AuthServiceService {
   }
 
   signUpAuth(email, password){
-    this.afAuth.createUserWithEmailAndPassword(email, password).then(res=>{
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+    .then(res=>{
       this.isSignedIn = true
       this.loggedInUserId  = res.user.uid
       this.router.navigateByUrl("/home")
+     //console.log(this.loggedInUserId)
+      return this.loggedInUserId
     }).catch(err=>{
       alert(err)
     })
