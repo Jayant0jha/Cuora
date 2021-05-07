@@ -38,18 +38,18 @@
 
 		<div class="student-container">
 			
-			<mat-form-field appearance="fill">
+			<mat-form-field appearance="outline">
 			  <mat-label>Student Name</mat-label>
 			  <input matInput [(ngModel)]="user.Name">
 			</mat-form-field>
 			<br>
 			
-			<mat-form-field appearance="fill">
+			<mat-form-field appearance="outline">
 			  <mat-label>Enrolment Year</mat-label>
 			  <input matInput type="number" [(ngModel)]="user.Enrol_year">
 			</mat-form-field>
 			<br>
-			<mat-form-field appearance="fill">
+			<mat-form-field appearance="outline">
 			  <mat-label>Department</mat-label>
 			  <mat-select [(ngModel)]="user.Department">
 				<mat-option *ngFor="let d of dep" [value]="d.value" >
@@ -58,12 +58,12 @@
 			  </mat-select>
 			</mat-form-field>
 			<br>
-			<mat-form-field appearance="fill">
+			<mat-form-field appearance="outline">
 				<mat-label>Email</mat-label>
 				<input matInput type="email" [(ngModel)]="email">
 			</mat-form-field>
 			<br>
-			<mat-form-field appearance="fill">
+			<mat-form-field appearance="outline">
 				<mat-label>Password</mat-label>
 				<input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
 				<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

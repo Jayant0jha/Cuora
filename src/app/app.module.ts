@@ -47,6 +47,20 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { EventsComponent } from './events/events.component';
+import { MatNativeDateModule } from '@angular/material/core';
+
+const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD MMMM YYYY',
+  },
+  display: {
+    dateInput: 'DD MMMM YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -55,6 +69,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     NavbarComponent,
     HomeComponent,
     SignupComponent,
+    EventsComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,10 +111,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatNativeDateModule,
   ],
   
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

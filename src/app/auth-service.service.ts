@@ -15,7 +15,7 @@ export class AuthServiceService {
       if(res.uid){
         this.loggedInUserId = res.uid
         this.isSignedIn = true
-        this.router.navigateByUrl("/home")
+        this.router.navigateByUrl("/events")
       }
       else{
         this.isSignedIn = false

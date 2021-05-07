@@ -2,32 +2,28 @@
 <div class="container my-lg-5">
 <div class="d-flex justify-content-center h-100">
     <div class="card">
-        <img src="/assets/disc.jpg" style="height: 340px;" >
+        <img src="/assets/disc.jpg" style="height: 370px;" >
     </div>
     <div class="card">
         <div class="card-header">
-            <h3 style="color: indigo;">Sign In</h3>
+            <h3 style="color: indigo; font-size: 30px;">Sign In</h3>
         </div>
         <div class="card-body">
-            <form>
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-envelope" style="color:white"></i></span>
-                    </div>
-                    <input [(ngModel)]="email" type="email" class="form-control" name="emailID" placeholder="Email ID">
-                </div>
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-key" style="color:white"></i></span>
-                    </div>
-                    <input [(ngModel)]="password" type="password" class="form-control" name="pwd"  placeholder="Password">
-                </div>
+              <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" [(ngModel)]="email">
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  
+              </mat-form-field>
+              <br>
+                <button class="float-right" style="background-color: slateblue;"  mat-raised-button color="primary" (click)="SignIn()">Login</button>
+              <br>
 
-                <div class="form-group">
-                    <button (click)="SignIn()" type="submit" class="btn float-right">Login</button>
-                </div>
-            </form>
-    
         </div>
         
         <div class="card-footer">

@@ -13,7 +13,7 @@ body {
 
 
 .card {
-    height: 340px;
+    height: 370px;
     margin-bottom: auto;
     width: 400px;
     background-color: white !important;
@@ -41,7 +41,7 @@ input:focus {
     margin-left: 4px;
 }
 
-button {
-    color: white;
-    background-color: slateblue;
+mat-form-field {
+    width: 355px;
 }
+
