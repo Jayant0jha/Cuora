@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { AuthServiceService } from '../auth-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-events',
@@ -20,7 +20,7 @@ export class EventsComponent implements OnInit {
   currUserId;
   currUserName;
 
-  constructor(private _ngZone: NgZone, public db: AngularFirestore, public auth: AuthServiceService, private _snackbar: MatSnackBar) { }
+  constructor(private _ngZone: NgZone, public db: AngularFirestore, public auth: AuthServiceService, private _snackbar: MatSnackBar, private matdialog: MatDialog) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   triggerResize() {
@@ -54,7 +54,7 @@ export class EventsComponent implements OnInit {
     setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
 
     //clear form
-    this.eventObj = {Title: "", Desc: "", Venue: "", Date: null, Yes: 0, No: 0, CreatedBy: "", CreatedById: ""}
+    this.addEventFormGroup.reset()
   }
 
   getEvents(){
@@ -100,5 +100,6 @@ export class EventsComponent implements OnInit {
     setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
     
   }
+
 
 }

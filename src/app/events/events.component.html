@@ -51,31 +51,10 @@
         <p style="color: grey;">We have no events to show</p>
         <p style="color: grey;">CHECK BACK SOON!</p>
       </div>
-      <mat-card *ngFor="let e of eventsFromDb">
-        <mat-title style="color: indigo;">
-          {{e.Title}}
-          <div *ngIf="e.CreatedById==currUserId" style="float: right; color: black;" (click)="deleteEvent(e)">
-            <button mat-icon-button style="outline: none; border: none;">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </mat-title>
-        <mat-card-content>
-          <div class="eventData"><i>Description: </i>{{e.Desc}}</div>
-          <div class="eventData"><i>Venue: </i>{{e.Venue}}</div>
-          <div class="eventData"><i>Date: </i>{{e.Date.toDate()}}</div>
-          <div class="eventData" style="color: grey; font-size: 12px; float: left;"><i>Created By: </i>{{e.CreatedBy}}</div>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          <button style="outline: none; border: none; cursor: default; background-color: transparent; margin-right: 10px;" >Attending?</button>
-          <button mat-icon-button style="color: green;">
-              <mat-icon>done</mat-icon>
-          </button>
-          <button mat-icon-button style="color: red;">
-            <mat-icon>clear</mat-icon>
-          </button>
-      </mat-card-actions>
-      </mat-card>
+      <div>
+        <app-eventscard [member]="item" *ngFor="let item of eventsFromDb"></app-eventscard>
+        
+      </div>
     </div>
   </div>
 </body>

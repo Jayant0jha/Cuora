@@ -49,6 +49,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { EventsComponent } from './events/events.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EventscardComponent } from './eventscard/eventscard.component';
 
 const MY_FORMATS = {
   parse: {
@@ -70,6 +71,7 @@ const MY_FORMATS = {
     HomeComponent,
     SignupComponent,
     EventsComponent,
+    EventscardComponent,
   ],
   imports: [
     BrowserModule,
