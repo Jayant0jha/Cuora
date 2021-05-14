@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { AuthServiceService } from '../auth-service.service';
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-eventscard',
@@ -66,10 +68,18 @@ export class EventscardComponent implements OnInit {
   updateEvent(){
     this.db.collection("Events").doc(this.e.id).set(this.editedEvent)
     this.isformvisible = !this.isformvisible
+    //show snackbar
+    let snackBarRef = this._snackbar.open("Event updated successfully!")
+    setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
+    
   }
 
   public checkError = (controlName: string, errorName: string) => {
     return this.addEventFormGroup.controls[controlName].hasError(errorName);
+  }
+
+  cancelUpdate(){
+    this.isformvisible = !this.isformvisible
   }
 
 

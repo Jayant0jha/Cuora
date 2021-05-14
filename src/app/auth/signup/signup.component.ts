@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/auth-service.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Dept{
   value: string;
@@ -32,7 +33,7 @@ export class SignupComponent implements OnInit {
 
   ];
 
-  constructor(public auth: AuthServiceService, public route: Router, public db: AngularFirestore) { }
+  constructor(public auth: AuthServiceService, public route: Router, public db: AngularFirestore, private _snackbar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -42,7 +43,9 @@ export class SignupComponent implements OnInit {
     this.user.UserId = await this.auth.signUpAuth(this.email, this.password)
     
     this.addUser()
-   
+    //show snackbar
+    let snackBarRef = this._snackbar.open("Signup successful!")
+    setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
   }
 
   addUser(){

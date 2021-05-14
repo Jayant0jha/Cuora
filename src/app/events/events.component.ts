@@ -5,8 +5,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { AuthServiceService } from '../auth-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-events',
@@ -19,9 +20,11 @@ export class EventsComponent implements OnInit {
   eventsFromDb = []
   currUserId;
   currUserName;
+  eventsCollRef;
 
   constructor(private _ngZone: NgZone, public db: AngularFirestore, public auth: AuthServiceService, private _snackbar: MatSnackBar, private matdialog: MatDialog) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
+  @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
 
   triggerResize() {
     // Wait for changes to be applied, then trigger textarea resize.
@@ -47,6 +50,11 @@ export class EventsComponent implements OnInit {
   createEvent(){
     this.eventObj.CreatedBy = this.currUserName
     this.eventObj.CreatedById = this.currUserId
+
+    //convert timestamp to date
+    // var myDate = moment(this.eventObj.Date).format('DD/MM/YYYY');
+    // this.eventObj.Date = myDate
+
     console.log(this.eventObj)
     this.db.collection("Events").add(this.eventObj)
     //show snackbar
@@ -54,11 +62,12 @@ export class EventsComponent implements OnInit {
     setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
 
     //clear form
-    this.addEventFormGroup.reset()
+    this.formGroupDirective.resetForm()
   }
 
   getEvents(){
-    this.db.collection("Events")
+    this.db
+    .collection("Events",  ref=>ref.orderBy('Date'))
     .snapshotChanges()
     .pipe(
       map(actions => actions.map(a => {

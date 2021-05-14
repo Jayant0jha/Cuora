@@ -1,5 +1,5 @@
 <mat-card *ngIf="!isformvisible">
-    <mat-title style="color: indigo;">
+    <mat-title style="color: indigo; font-size: 20px;" >
       {{e.Title}}
       <div *ngIf="e.CreatedById==currUserId" style="float: right; color: black;">
         <button mat-icon-button style="outline: none; border: none;" (click)="editEvent(e)">
@@ -13,7 +13,7 @@
     <mat-card-content>
       <div class="eventData"><i>Description: </i>{{e.Desc}}</div>
       <div class="eventData"><i>Venue: </i>{{e.Venue}}</div>
-      <div class="eventData"><i>Date: </i>{{e.Date.toDate()}}</div>
+      <div class="eventData"><i>Date: </i>{{e.Date.toDate() | date}}</div>
       <div class="eventData" style="color: grey; font-size: 12px; float: left;"><i>Created By: </i>{{e.CreatedBy}}</div>
     </mat-card-content>
     <mat-card-actions align="end">
@@ -68,6 +68,7 @@
       <br>
 
       <button [disabled]="!addEventFormGroup.valid" type="submit" style="background-color: slateblue; width: 120px;"  mat-raised-button color="primary">Update</button>
+      <button style="background-color: red; width: 120px; margin-left: 20px;"  mat-raised-button color="primary" (click)="cancelUpdate()">Cancel</button>
   </form>  
 
 </mat-card>
