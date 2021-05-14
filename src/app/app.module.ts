@@ -50,7 +50,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { EventsComponent } from './events/events.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { EventscardComponent } from './eventscard/eventscard.component';
-
+import { MyeventsComponent } from './myevents/myevents.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 const MY_FORMATS = {
   parse: {
     dateInput: 'DD MMMM YYYY',
@@ -72,6 +73,7 @@ const MY_FORMATS = {
     SignupComponent,
     EventsComponent,
     EventscardComponent,
+    MyeventsComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +117,7 @@ const MY_FORMATS = {
     MatSortModule,
     MatPaginatorModule,
     MatNativeDateModule,
+    FlexLayoutModule
   ],
   
   providers: [

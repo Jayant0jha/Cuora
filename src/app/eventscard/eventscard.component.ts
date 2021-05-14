@@ -7,6 +7,7 @@ import { AuthServiceService } from '../auth-service.service';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { ThrowStmt } from '@angular/compiler';
+import { EventServiceService } from '../event-service.service';
 
 @Component({
   selector: 'app-eventscard',
@@ -22,14 +23,14 @@ export class EventscardComponent implements OnInit {
   eventsFromDb;
   yesClicked;
   noClicked;
-  eventsAttending = []
-  eventsNotAttending = []
+  eventsAttending = Array<string>();
+  eventsNotAttending = Array<string>();
   public addEventFormGroup: FormGroup
 
 
   editedEvent = {Title: "", Desc: "", Venue: "", Date: null, Yes: [], No: [], CreatedBy: "", CreatedById: ""}
   
-  constructor(public db: AngularFirestore, public auth: AuthServiceService, public _snackbar: MatSnackBar) { }
+  constructor(public db: AngularFirestore, public auth: AuthServiceService, public _snackbar: MatSnackBar, public eventService: EventServiceService) { }
 
   ngOnInit(): void {
     this.getCurrentUserName()

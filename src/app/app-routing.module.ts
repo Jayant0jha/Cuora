@@ -6,10 +6,12 @@ import { HomeComponent } from './home/home.component';
 
 import { AuthGuardService } from './auth-guard.service';
 import { EventsComponent } from './events/events.component';
+import { MyeventsComponent } from './myevents/myevents.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   {path: 'events', component: EventsComponent, canActivate: [AuthGuardService]},
+  {path: 'myevents', component: MyeventsComponent, canActivate: [AuthGuardService]},
   {path:'signin', component: SigninComponent},
   {path: 'signup', component: SignupComponent},
   {path:'', redirectTo:'signin', pathMatch:'full'}
