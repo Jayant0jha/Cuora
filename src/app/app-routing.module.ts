@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'myevents', component: MyeventsComponent, canActivate: [AuthGuardService]},
   {path:'signin', component: SigninComponent},
   {path: 'signup', component: SignupComponent},
-  {path:'', redirectTo:'signin', pathMatch:'full'}
+  {path:'', redirectTo:'home', pathMatch:'full'}
 ];
 
 @NgModule({

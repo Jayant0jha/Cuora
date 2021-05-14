@@ -1,6 +1,7 @@
 <body>
-<div class="row">
+<div fxLayout="row" style="height: 100%;">
     <div class="create-event col-md-4">
+      <h1 style="color: indigo; font-weight: 500;">Create Event </h1>
       <form [formGroup]="addEventFormGroup"  (ngSubmit)="createEvent()" class="example-form">
         <mat-form-field appearance="outline">
             <mat-label>Title</mat-label>
@@ -40,19 +41,23 @@
           </mat-form-field>
           <br>
 
-          <button [disabled]="!addEventFormGroup.valid" type="submit" style="background-color: slateblue; width: 120px;"  mat-raised-button color="primary">Create Event</button>
+          <button [disabled]="!addEventFormGroup.valid && addEventFormGroup.touched" type="submit" style="background-color: slateblue; width: 120px;"  mat-raised-button color="primary">Create Event</button>
       </form>  
           
-          
+      
     </div>
-    <div class="col-md-8">
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <div class="col-md-8 create-event" >
+      <h1 style="color: indigo; font-weight: 500;"> Events</h1>
+
       <div style="margin: 0 auto; text-align: center; margin-top: 20px;" *ngIf="eventsFromDb.length==0">
         <mat-icon>calendar_today</mat-icon>
         <p style="color: grey;">We have no events to show</p>
         <p style="color: grey;">CHECK BACK SOON!</p>
       </div>
-      <div>
-        <app-eventscard [member]="item" *ngFor="let item of eventsFromDb"></app-eventscard>
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center" >
+        <app-eventscard fxFlex="40" [member]="item" *ngFor="let item of eventsFromDb"></app-eventscard>
         
       </div>
     </div>

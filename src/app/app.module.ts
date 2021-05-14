@@ -10,6 +10,8 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import 'firebase/firestore';
+import {MatDividerModule} from '@angular/material/divider';
+
 import { AngularFireAuthModule} from '@angular/fire/auth';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component'
@@ -117,7 +119,8 @@ const MY_FORMATS = {
     MatSortModule,
     MatPaginatorModule,
     MatNativeDateModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDividerModule
   ],
   
   providers: [

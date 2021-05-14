@@ -115,18 +115,27 @@ export class EventscardComponent implements OnInit {
       eventVenue: new FormControl('', [Validators.required]),
       eventDate: new FormControl('', [Validators.required])
     });
-    this.editedEvent = this.e
+    this.editedEvent = {...this.e};
+
+    this.editedEvent.Date = this.editedEvent.Date.toDate();
+    console.log("editedddd", this.editedEvent)
     console.log("edit button clicked")
     console.log(e)
     
   }
 
   updateEvent(){
-    this.db.collection("Events").doc(this.e.id).set(this.editedEvent)
-    this.isformvisible = !this.isformvisible
-    //show snackbar
-    let snackBarRef = this._snackbar.open("Event updated successfully!")
+    if (this.addEventFormGroup.valid) {
+      this.db.collection("Events").doc(this.e.id).set(this.editedEvent)
+      this.isformvisible = !this.isformvisible
+      //show snackbar
+      let snackBarRef = this._snackbar.open("Event updated successfully!")
+      setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
+    } else {
+    let snackBarRef = this._snackbar.open("Please fill all the required fields!")
     setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
+
+    }
     
   }
 

@@ -48,21 +48,27 @@ export class EventsComponent implements OnInit {
   }
 
   createEvent(){
-    this.eventObj.CreatedBy = this.currUserName
-    this.eventObj.CreatedById = this.currUserId
+    if(this.addEventFormGroup.valid) {
+      this.eventObj.CreatedBy = this.currUserName
+      this.eventObj.CreatedById = this.currUserId
+  
+      //convert timestamp to date
+      // var myDate = moment(this.eventObj.Date).format('DD/MM/YYYY');
+      // this.eventObj.Date = myDate
+  
+      console.log(this.eventObj)
+      this.db.collection("Events").add(this.eventObj)
+      //show snackbar
+      let snackBarRef = this._snackbar.open("Event added successfully!")
+      setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
+  
+      //clear form
+      this.formGroupDirective.resetForm()
+    } else {
+      let snackBarRef = this._snackbar.open("Please fill all the required fields!")
+      setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
 
-    //convert timestamp to date
-    // var myDate = moment(this.eventObj.Date).format('DD/MM/YYYY');
-    // this.eventObj.Date = myDate
-
-    console.log(this.eventObj)
-    this.db.collection("Events").add(this.eventObj)
-    //show snackbar
-    let snackBarRef = this._snackbar.open("Event added successfully!")
-    setTimeout(snackBarRef.dismiss.bind(snackBarRef), 2000);
-
-    //clear form
-    this.formGroupDirective.resetForm()
+    }
   }
 
   getEvents(){

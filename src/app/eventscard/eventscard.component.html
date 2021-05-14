@@ -16,8 +16,8 @@
       <div class="eventData"><i>Date: </i>{{e.Date.toDate() | date}}</div>
       <hr *ngIf="e.CreatedById==currUserId">
       <div class="eventData" style="color: grey; font-size: 12px;"><i>Created By: </i>{{e.CreatedBy}}</div>
-      <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" *ngIf="e.CreatedById==currUserId"><i>Attending: </i>{{e.Yes.length}}</div>
-      <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" *ngIf="e.CreatedById==currUserId"><i>Not Attending: </i>{{e.No.length}}</div>
+      <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" ><i>Attending: </i>{{e.Yes.length}}</div>
+      <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" ><i>Not Attending: </i>{{e.No.length}}</div>
     </mat-card-content>
     <mat-card-actions align="end">
       <button style="outline: none; border: none; cursor: default; background-color: transparent; margin-right: 10px;" >Attending?</button>
@@ -76,8 +76,8 @@
       </mat-form-field>
       <br>
 
-      <button [disabled]="!addEventFormGroup.valid" type="submit" style="background-color: slateblue; width: 120px;"  mat-raised-button color="primary">Update</button>
-      <button style="background-color: red; width: 120px; margin-left: 20px;"  mat-raised-button color="primary" (click)="cancelUpdate()">Cancel</button>
+      <button  type="submit" style="background-color: slateblue; width: 120px;"  mat-raised-button color="primary">Update</button>
+      <button style=" width: 120px; margin-left: 20px;"  mat-stroked-button color="primary" (click)="cancelUpdate()">Cancel</button>
   </form>  
 
 </mat-card>

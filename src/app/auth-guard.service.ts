@@ -1,3 +1,4 @@
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {Router, CanActivate} from '@angular/router';
 import { AuthServiceService } from './auth-service.service';
@@ -8,13 +9,21 @@ export class AuthGuardService {
 
   constructor(public auth: AuthServiceService, public router: Router) { }
 
-  canActivate() : boolean{
-    if(this.auth.isUserSignedIn()){
-      return true
+  // async canActivate() : Promise<boolean>{
+  //   if(await this.auth.isUserSignedIn()){
+  //     return true
+  //   }
+  //   else{
+  //     this.router.navigateByUrl("\signin")
+  //     return false
+  //   }
+  // }
+
+   canActivate(): Observable<boolean> {
+    if (! ( this.auth.isUserSignedIn())) {
+      this.router.navigate(['signin']);
+      return of(false)
     }
-    else{
-      this.router.navigateByUrl("\signin")
-      return false
-    }
+    return of(true);
   }
 }
