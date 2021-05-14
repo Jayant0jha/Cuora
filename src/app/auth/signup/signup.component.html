@@ -36,7 +36,69 @@
 
 		</div> -->
 
-		<div class="student-container">
+
+		
+		<div class="container my-lg-5">
+			<div class="d-flex justify-content-center h-500">
+				<div class="card">
+					<img src="/assets/sign-up-image.jpg" style="height: 40%;" >
+				</div>
+				<div class="card">
+					<div class="card-header">
+						<h3 style="color: indigo; font-size: 30px;">Sign Up</h3>
+					</div>
+					<div class="card-body">
+						<mat-form-field appearance="outline">
+							<mat-label>Student Name</mat-label>
+							<input matInput [(ngModel)]="user.Name">
+						  </mat-form-field>
+						  <br>
+						  
+						  <mat-form-field appearance="outline">
+							<mat-label>Enrolment Year</mat-label>
+							<input matInput type="number" [(ngModel)]="user.Enrol_year">
+						  </mat-form-field>
+						  <br>
+						  <mat-form-field appearance="outline">
+							<mat-label>Department</mat-label>
+							<mat-select [(ngModel)]="user.Department">
+							  <mat-option *ngFor="let d of dep" [value]="d.value" >
+								  {{d.viewValue}}
+							  </mat-option>
+							</mat-select>
+						  </mat-form-field>
+						  <br>
+						  <mat-form-field appearance="outline">
+							  <mat-label>Email</mat-label>
+							  <input matInput type="email" [(ngModel)]="email">
+						  </mat-form-field>
+						  <br>
+						  <mat-form-field appearance="outline">
+							  <mat-label>Password</mat-label>
+							  <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+							  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+							  
+						  </mat-form-field>
+						  <br>
+						
+						  <section>
+							<div style="text-align: center;">
+							  <button style="background-color: slateblue;" mat-raised-button color="primary" (click)="SignUp()">Register</button>
+							</div>
+						  </section>
+					</div>
+					
+					<div class="card-footer">
+						<div class="d-flex justify-content-center links">
+							Already have an account?<a routerLink="/signin">Sign In</a>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+
+		<!-- <div class="student-container">
 			
 			<mat-form-field appearance="outline">
 			  <mat-label>Student Name</mat-label>
@@ -73,10 +135,16 @@
 		  
 			<section>
 			  <div class="example-button-row">
-				<button style="background-color: slateblue;" mat-raised-button color="primary" (click)="SignUp()">Signup</button>
+				<button style="background-color: slateblue;" mat-raised-button color="primary" (click)="SignUp()">Register</button>
 			  </div>
+			  <br>
+			  <br>
+			  <div class="d-flex justify-content-center links">
+                Already have an account?<a routerLink="/signin">Sign In</a>
+            </div>
 			</section>
-		  </div>
+
+		  </div> -->
 
 	</div>
 </div>

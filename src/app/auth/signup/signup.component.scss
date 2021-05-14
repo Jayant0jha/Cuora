@@ -12,9 +12,9 @@ body {
 }
 
 .card {
-    height: 340px;
+    height: 40%;
     margin-bottom: auto;
-    width: 400px;
+    width: 40%;
     background-color: white !important;
 }
 
@@ -50,11 +50,15 @@ mat-form-field {
 }
 
 mat-raised-button{
-    margin: 0 auto;
-    display: flex;
+    // margin: 0 auto;
+    // display: flex;
 }
 
 .student-container {
     justify-content: center;
     text-align: center;
 }
+
+
+
+
