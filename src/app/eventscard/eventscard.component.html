@@ -14,7 +14,10 @@
       <div class="eventData"><i>Description: </i>{{e.Desc}}</div>
       <div class="eventData"><i>Venue: </i>{{e.Venue}}</div>
       <div class="eventData"><i>Date: </i>{{e.Date.toDate() | date}}</div>
-      <div class="eventData" style="color: grey; font-size: 12px; float: left;"><i>Created By: </i>{{e.CreatedBy}}</div>
+      <hr *ngIf="e.CreatedById==currUserId">
+      <div class="eventData" style="color: grey; font-size: 12px;"><i>Created By: </i>{{e.CreatedBy}}</div>
+      <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" *ngIf="e.CreatedById==currUserId"><i>Attending: </i>{{e.Yes.length}}</div>
+      <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" *ngIf="e.CreatedById==currUserId"><i>Not Attending: </i>{{e.No.length}}</div>
     </mat-card-content>
     <mat-card-actions align="end">
       <button style="outline: none; border: none; cursor: default; background-color: transparent; margin-right: 10px;" >Attending?</button>
