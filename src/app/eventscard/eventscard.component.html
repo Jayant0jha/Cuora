@@ -18,10 +18,16 @@
     </mat-card-content>
     <mat-card-actions align="end">
       <button style="outline: none; border: none; cursor: default; background-color: transparent; margin-right: 10px;" >Attending?</button>
-      <button mat-icon-button style="color: green;">
+      <button mat-icon-button style="border: none; outline: none;"
+      [style.background-color]="eventsAttending.includes(e.id) ? 'green' : 'transparent'" 
+      [style.color] = "eventsAttending.includes(e.id) ? 'white' : 'green'" 
+      (click)="yesBtnClicked(e)">
           <mat-icon>done</mat-icon>
       </button>
-      <button mat-icon-button style="color: red;">
+      <button mat-icon-button style="border: none; outline: none;"
+      [style.background-color]="eventsNotAttending.includes(e.id) ? 'red' : 'transparent'" 
+      [style.color] = "eventsNotAttending.includes(e.id)? 'white' : 'red'" 
+      (click)="noBtnClicked(e)">
         <mat-icon>clear</mat-icon>
       </button>
   </mat-card-actions>

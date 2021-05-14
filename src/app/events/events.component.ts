@@ -16,7 +16,7 @@ import * as moment from 'moment';
 })
 export class EventsComponent implements OnInit {
   public addEventFormGroup: FormGroup
-  eventObj: {Title: string, Desc: string, Venue: string, Date: any, Yes: number, No: number, CreatedBy: string, CreatedById: string} = {Title: "", Desc: "", Venue: "", Date: null, Yes: 0, No: 0, CreatedBy: "", CreatedById: ""}
+  eventObj: {Title: string, Desc: string, Venue: string, Date: any, Yes: Array<string>, No: Array<string>, CreatedBy: string, CreatedById: string} = {Title: "", Desc: "", Venue: "", Date: null, Yes: [], No: [], CreatedBy: "", CreatedById: ""}
   eventsFromDb = []
   currUserId;
   currUserName;
@@ -80,8 +80,6 @@ export class EventsComponent implements OnInit {
       this.eventsFromDb = res
       //this.eventsFromDb.sort((a, b) => a.Date.localeCompare(b.Date))
     })
-
-
   }
 
   getCurrentUserName(){
