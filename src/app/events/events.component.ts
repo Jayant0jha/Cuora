@@ -21,6 +21,8 @@ export class EventsComponent implements OnInit {
   currUserId;
   currUserName;
   eventsCollRef;
+  eventHead = "Events"
+  todaysDate;
 
   constructor(private _ngZone: NgZone, public db: AngularFirestore, public auth: AuthServiceService, private _snackbar: MatSnackBar, private matdialog: MatDialog) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -33,6 +35,7 @@ export class EventsComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.todaysDate = new Date()
     this.getCurrentUserName()
     this.getEvents()
     this.addEventFormGroup = new FormGroup({

@@ -1,0 +1,14 @@
+<div class="create-event" style="height: 93%; overflow-y: scroll;" >
+    <h1 style="color: indigo; font-weight: 500;">{{eventHeading}}</h1>
+    <div fxLayoutAlign="space-between center" style="height: 100%; width:100%" *ngIf="eventsFromDb?.length==0">
+        <div style="margin: 0 auto; text-align: center; margin-top: 20px;">
+            <mat-icon>calendar_today</mat-icon>
+            <p style="color: grey;">We have no events to show</p>
+            <p style="color: grey;">CHECK BACK SOON!</p>
+        </div>
+    </div>
+    
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" >
+      <app-eventscard fxFlex="47" [member]="item" *ngFor="let item of eventsFromDb"></app-eventscard> 
+    </div>
+  </div>

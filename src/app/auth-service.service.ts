@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthServiceService {
   constructor(public router: Router, public afAuth: AngularFireAuth) {  
     
     this.afAuth.user.subscribe(res=>{
-      if(res.uid){
+      if(res && res.uid){
         this.loggedInUserId = res.uid
         this.isSignedIn = true
         this.router.navigateByUrl("/events")

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { EventServiceService } from '../event-service.service';
 import { map } from 'rxjs/operators';
+import { AuthServiceService } from '../auth-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-myevents',
@@ -14,19 +16,18 @@ export class MyeventsComponent implements OnInit {
   eventsAttending;
   eventsNotAttending;
   eventsFromDb;
-  constructor(public eventServ: EventServiceService, public db: AngularFirestore) { }
+  currUserId;
+  eventHead = "My Events";
+  constructor(public eventServ: EventServiceService, public db: AngularFirestore, public auth: AuthServiceService, private _snackbar: MatSnackBar) {}
 
-  async ngOnInit(): Promise<void> {
-    this.eventsAttending = await this.eventServ.getEventsAttending()
-    this.eventsNotAttending = await this.eventServ.getEventsNotAttending()
-    this.eventsAttending.forEach(element => {
-      this.getEvents(element)
-    });
+  ngOnInit(): void {
+    this.getMyEvents()
   }
 
-  getEvents(idAtt){
+  getMyEvents(){
+    this.currUserId = this.auth.getUserId()
     this.db
-    .collection("Events",  ref=>ref.where('id', '==', idAtt))
+    .collection("Events",  ref=>ref.where('CreatedById', '==', this.currUserId))
     .snapshotChanges()
     .pipe(
       map(actions => actions.map(a => {
@@ -37,6 +38,7 @@ export class MyeventsComponent implements OnInit {
     )
     .subscribe(res=>{
       this.eventsFromDb = res;
+      console.log(this.eventsFromDb)
     })
   }
 

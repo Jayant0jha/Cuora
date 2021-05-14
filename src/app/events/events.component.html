@@ -1,4 +1,4 @@
-<body>
+
 <div fxLayout="row" style="height: 100%;">
     <div class="create-event col-md-4">
       <h1 style="color: indigo; font-weight: 500;">Create Event </h1>
@@ -34,12 +34,18 @@
           
           <mat-form-field appearance="outline">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="eventObj.Date" formControlName="eventDate">
+            <input matInput [matDatepicker]="picker" [min]="todaysDate" [(ngModel)]="eventObj.Date" formControlName="eventDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="checkError('eventDate', 'required')">Event date is required</mat-error>
           </mat-form-field>
           <br>
+          <!-- <mat-form-field>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="eventDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker>
+            </ngx-mat-datetime-picker>
+         </mat-form-field> -->
 
           <button [disabled]="!addEventFormGroup.valid && addEventFormGroup.touched" type="submit" style="background-color: slateblue; width: 120px;"  mat-raised-button color="primary">Create Event</button>
       </form>  
@@ -47,19 +53,8 @@
       
     </div>
     <mat-divider [vertical]="true"></mat-divider>
+    <app-eventlist [eventsFromDb]="eventsFromDb" [eventHeading]="eventHead">
 
-    <div class="col-md-8 create-event" >
-      <h1 style="color: indigo; font-weight: 500;"> Events</h1>
+    </app-eventlist>
 
-      <div style="margin: 0 auto; text-align: center; margin-top: 20px;" *ngIf="eventsFromDb.length==0">
-        <mat-icon>calendar_today</mat-icon>
-        <p style="color: grey;">We have no events to show</p>
-        <p style="color: grey;">CHECK BACK SOON!</p>
-      </div>
-      <div fxLayout="row wrap" fxLayoutAlign="space-between center" >
-        <app-eventscard fxFlex="40" [member]="item" *ngFor="let item of eventsFromDb"></app-eventscard>
-        
-      </div>
-    </div>
   </div>
-</body>

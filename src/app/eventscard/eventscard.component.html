@@ -11,10 +11,10 @@
       </div>
     </mat-title>
     <mat-card-content>
-      <div class="eventData"><i>Description: </i>{{e.Desc}}</div>
+      <div class="eventData" style="white-space: pre-wrap"><i>Description: </i>{{e.Desc}}</div>
       <div class="eventData"><i>Venue: </i>{{e.Venue}}</div>
       <div class="eventData"><i>Date: </i>{{e.Date.toDate() | date}}</div>
-      <hr *ngIf="e.CreatedById==currUserId">
+      <hr>
       <div class="eventData" style="color: grey; font-size: 12px;"><i>Created By: </i>{{e.CreatedBy}}</div>
       <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" ><i>Attending: </i>{{e.Yes.length}}</div>
       <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" ><i>Not Attending: </i>{{e.No.length}}</div>

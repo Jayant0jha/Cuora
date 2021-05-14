@@ -54,17 +54,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { EventscardComponent } from './eventscard/eventscard.component';
 import { MyeventsComponent } from './myevents/myevents.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-const MY_FORMATS = {
-  parse: {
-    dateInput: 'DD MMMM YYYY',
-  },
-  display: {
-    dateInput: 'DD MMMM YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
+import { EventlistComponent } from './eventlist/eventlist.component';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import {NgxMatMomentModule} from '@angular-material-components/moment-adapter'
 
 @NgModule({
   declarations: [
@@ -76,6 +69,7 @@ const MY_FORMATS = {
     EventsComponent,
     EventscardComponent,
     MyeventsComponent,
+    EventlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +114,11 @@ const MY_FORMATS = {
     MatPaginatorModule,
     MatNativeDateModule,
     FlexLayoutModule,
-    MatDividerModule
+    MatDividerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatMomentDateModule,
+    NgxMatMomentModule
   ],
   
   providers: [
