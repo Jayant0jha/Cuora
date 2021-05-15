@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class AuthServiceService {
   isSignedIn = false;
   loggedInUserId
+   // store the URL so we can redirect after logging in
+   public redirectUrl: string;
 
   constructor(public router: Router, public afAuth: AngularFireAuth) {  
     
@@ -16,7 +18,10 @@ export class AuthServiceService {
       if(res && res.uid){
         this.loggedInUserId = res.uid
         this.isSignedIn = true
-        this.router.navigateByUrl("/events")
+        if (this.redirectUrl) {
+          this.router.navigate([this.redirectUrl]);
+          this.redirectUrl = null;
+        }
       }
       else{
         this.isSignedIn = false

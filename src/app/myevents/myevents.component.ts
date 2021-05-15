@@ -18,6 +18,7 @@ export class MyeventsComponent implements OnInit {
   eventsFromDb;
   currUserId;
   eventHead = "My Events";
+  isLoading = false;
   constructor(public eventServ: EventServiceService, public db: AngularFirestore, public auth: AuthServiceService, private _snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class MyeventsComponent implements OnInit {
 
   getMyEvents(){
     this.currUserId = this.auth.getUserId()
+    this.isLoading = true;
     this.db
     .collection("Events",  ref=>ref.where('CreatedById', '==', this.currUserId))
     .snapshotChanges()
@@ -37,6 +39,7 @@ export class MyeventsComponent implements OnInit {
       }))
     )
     .subscribe(res=>{
+      this.isLoading = false;
       this.eventsFromDb = res;
       console.log(this.eventsFromDb)
     })

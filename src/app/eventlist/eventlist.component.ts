@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class EventlistComponent implements OnInit {
   @Input() eventsFromDb = [];
   @Input() eventHeading;
+  @Input() showLoader = false;
   
 
   constructor() { }

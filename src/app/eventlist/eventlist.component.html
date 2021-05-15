@@ -1,6 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="start start" style="width: 100%;" *ngIf="showLoader">
+  <!-- <mat-spinner ></mat-spinner> -->
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <div class="create-event" style="height: 93%; overflow-y: scroll;" >
     <h1 style="color: indigo; font-weight: 500; width: 100%;">{{eventHeading}}</h1>
-    <div fxLayout="row wrap" fxLayoutAlign="space-between center" *ngIf="eventsFromDb?.length==0">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" *ngIf="eventsFromDb?.length==0 && !showLoader">
         <div style="text-align: center; margin-top: 120px;" fxFlex=100>
             <mat-icon>calendar_today</mat-icon>
             <p style="color: grey;">We have no events to show</p>
@@ -8,7 +12,8 @@
         </div>
     </div>
     
-    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" *ngIf="!showLoader">
       <app-eventscard fxFlex="47" [member]="item" *ngFor="let item of eventsFromDb" ></app-eventscard> 
     </div>
   </div>

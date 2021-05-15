@@ -23,6 +23,7 @@ export class EventsComponent implements OnInit {
   eventsCollRef;
   eventHead = "Events"
   todaysDate;
+  isLoading = false;
 
   constructor(private _ngZone: NgZone, public db: AngularFirestore, public auth: AuthServiceService, private _snackbar: MatSnackBar, private matdialog: MatDialog) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -76,6 +77,7 @@ export class EventsComponent implements OnInit {
   }
 
   getEvents(){
+    this.isLoading = true;
     this.db
     .collection("Events",  ref=>ref.orderBy('Date'))
     .snapshotChanges()
@@ -87,6 +89,7 @@ export class EventsComponent implements OnInit {
       }))
     )
     .subscribe(res=>{
+      this.isLoading = false;
       this.eventsFromDb = res
       //this.eventsFromDb.sort((a, b) => a.Date.localeCompare(b.Date))
     })

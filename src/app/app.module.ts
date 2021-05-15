@@ -57,7 +57,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
-import {NgxMatMomentModule} from '@angular-material-components/moment-adapter'
+// import {NgxMatMomentModule} from '@angular-material-components/moment-adapter'
+
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import {NgxMatMomentModule} from '@angular-material-components/moment-adapter'
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     MatMomentDateModule,
-    NgxMatMomentModule
+    // NgxMatMomentModule,
+    MatProgressSpinnerModule
   ],
   
   providers: [
