@@ -1,6 +1,6 @@
 
 <div fxLayout="row" style="height: 100%;">
-    <div class="create-event col-md-4">
+    <div class="create-event col-md-4 col-lg-4">
       <h1 style="color: indigo; font-weight: 500;">Create Event </h1>
       <form [formGroup]="addEventFormGroup"  (ngSubmit)="createEvent()" class="example-form">
         <mat-form-field appearance="outline">
@@ -46,15 +46,14 @@
             <ngx-mat-datetime-picker #picker>
             </ngx-mat-datetime-picker>
          </mat-form-field> -->
-
           <button [disabled]="!addEventFormGroup.valid && addEventFormGroup.touched" type="submit" style="background-color: slateblue; width: 120px;"  mat-raised-button color="primary">Create Event</button>
       </form>  
-          
-      
     </div>
     <mat-divider [vertical]="true"></mat-divider>
-    <app-eventlist [eventsFromDb]="eventsFromDb" [eventHeading]="eventHead">
-
-    </app-eventlist>
+    <div class="col-lg-8 col-md-8" style="padding-right: 0;">
+      <app-eventlist [eventsFromDb]="eventsFromDb" [eventHeading]="eventHead">
+      </app-eventlist>
+    </div>
+   
 
   </div>

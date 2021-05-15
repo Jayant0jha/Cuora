@@ -39,7 +39,7 @@ export class EventsComponent implements OnInit {
     this.getCurrentUserName()
     this.getEvents()
     this.addEventFormGroup = new FormGroup({
-      eventTitle : new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+      eventTitle : new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       eventDesc: new FormControl('', [Validators.required]),
       eventVenue: new FormControl('', [Validators.required]),
       eventDate: new FormControl('', [Validators.required])
@@ -58,7 +58,8 @@ export class EventsComponent implements OnInit {
       //convert timestamp to date
       // var myDate = moment(this.eventObj.Date).format('DD/MM/YYYY');
       // this.eventObj.Date = myDate
-  
+      console.log(this.eventObj.Date)
+      this.eventObj.Date = this.eventObj.Date.toDate()
       console.log(this.eventObj)
       this.db.collection("Events").add(this.eventObj)
       //show snackbar
