@@ -16,7 +16,7 @@ import * as moment from 'moment';
 })
 export class EventsComponent implements OnInit {
   public addEventFormGroup: FormGroup
-  eventObj: {Title: string, Desc: string, Venue: string, Date: any, Yes: Array<string>, No: Array<string>, CreatedBy: string, CreatedById: string} = {Title: "", Desc: "", Venue: "", Date: null, Yes: [], No: [], CreatedBy: "", CreatedById: ""}
+  eventObj: {Title: string, Desc: string, Venue: string, Date: any, Time: any, Yes: Array<string>, No: Array<string>, CreatedBy: string, CreatedById: string} = {Title: "", Desc: "", Venue: "", Date: null, Time: null, Yes: [], No: [], CreatedBy: "", CreatedById: ""}
   eventsFromDb = []
   currUserId;
   currUserName;
@@ -43,7 +43,8 @@ export class EventsComponent implements OnInit {
       eventTitle : new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       eventDesc: new FormControl('', [Validators.required]),
       eventVenue: new FormControl('', [Validators.required]),
-      eventDate: new FormControl('', [Validators.required])
+      eventDate: new FormControl('', [Validators.required]),
+      eventTime: new FormControl('', [Validators.required]) 
     });
   }
 
