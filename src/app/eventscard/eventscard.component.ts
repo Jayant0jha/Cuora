@@ -126,7 +126,9 @@ export class EventscardComponent implements OnInit {
 
   updateEvent(){
     if (this.addEventFormGroup.valid) {
-      this.editedEvent.Date = this.editedEvent.Date.toDate()
+      console.log(this.editedEvent.Date)
+      if(this.editedEvent.Date._isAMomentObject)
+        this.editedEvent.Date = this.editedEvent.Date.toDate()
       this.db.collection("Events").doc(this.e.id).set(this.editedEvent)
       this.isformvisible = !this.isformvisible
       //show snackbar
