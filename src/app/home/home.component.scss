@@ -203,3 +203,57 @@ body{
 .mar-top {
     margin-top: 15px;
 }
+
+
+
+/* navbar */
+.navBlock{
+    border-bottom: 1px #ccc solid;
+    padding: 16px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.navList{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.searchTop{
+    width: 450px !important;
+    border-radius: 20px !important;
+}
+.navTxt{
+    color: rgb(43, 43, 43);
+    font-weight: 700 !important;
+}
+.btnRound{
+    background-color: #5A44FF !important;
+    border-radius: 32px !important;
+    padding: 4px 20px !important;
+}
+
+/* main */
+.navMidTxt{
+    color: rgb(73, 72, 72);
+    font-weight: 500 !important;
+}
+.sidePara{
+    display: inline;
+    margin-right: 8px !important;
+}
+.p-small{
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    color: rgb(158, 158, 158);
+}
+.replyBox{
+    width: 60% !important;
+    height: 80px !important;
+}
+.replyThreadBox{
+    border-left: 1px #ccc solid;
+}

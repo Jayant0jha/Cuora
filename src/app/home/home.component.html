@@ -37,7 +37,11 @@
     </div>
 </div> -->
 
-<div class="container">
+<div class="container" style="overflow-y: scroll;">
+  <div fxLayout="row" fxLayoutAlign="start start" style="width: 100%;" *ngIf="isLoading">
+    <!-- <mat-spinner ></mat-spinner> -->
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
 <div class="col-md-12 bootstrap snippets">
 <div class="panel">
   <div class="panel-body">
@@ -47,8 +51,13 @@
     </div>
     
     <form>
-        <div class="input-group form-group">
-            <textarea [(ngModel)]="postText" type="text" class="form-control input-lg" name="postText" placeholder="Got something to share?"></textarea>
+        <div >
+            <!-- <textarea [(ngModel)]="postText" type="text" class="form-control input-lg" name="postText" placeholder="Got something to share?"></textarea> -->
+            <mat-form-field style = "width: 100%;">
+              <mat-label>Add Post</mat-label>
+              <textarea matInput [formControl]="content" placeholder="Got something to share?"></textarea>
+              <mat-error *ngIf="content.touched && content.hasError('required')">Post Content is required</mat-error>
+            </mat-form-field>
         </div>
         <div class="mar-top clearfix">
             <button class="btn btn-sm pull-right" (click)="share()" type="submit"
@@ -65,6 +74,113 @@
     
   </div>
 </div>
+
+<!-- main -->
+<div class="container my-5" >
+  <!-- post -->
+  <div class="row my-4">
+      <div class="col-1">
+          <i class="far fa-user-circle fa-3x"></i>
+      </div>
+      <div class="col-11">
+          <div class="row">
+              <div class="col-12">
+                  <p class="font-weight-bold sidePara">Pawel Kadysz </p>
+                  <p class="font-weight-normal sidePara p-small">3 days ago</p>
+              </div>
+          </div>
+          <p class="font-weight-normal text-muted">Let's discuss: according to you, do you think it is a good idea to have uniform for college students?</p>
+          <p class="font-weight-normal text-muted">Post your opinion in the comment section regarding the same.</p>
+      </div>
+  </div>
+
+  <!-- reply -->
+  <div class="row">
+      <div class="col-1">
+          <i class="far fa-user-circle fa-3x"></i>
+      </div>
+      <div class="col-11">
+          <div class="row">
+              <div class="col-12">
+                  <input class="form-control mr-sm-2 replyBox" type="reply"
+                      placeholder="Type here to reply to Pawel..." aria-label="reply">
+              </div>
+          </div>
+          <div class="row my-2">
+              <div class="col-12">
+                  <button type="button" class="btn btn-primary btnRound">Post Comment</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- comments -->
+  <div class="row my-4">
+      <div class="col-12">
+          <div class="row my-4">
+              <div class="col-12">
+                  <p class="font-weight-bold sidePara">32 comments</p>
+              </div>
+          </div>
+          <div class="row my-2">
+              <div class="col-12">
+                  <i class="far fa-user-circle fa-lg"></i>
+                  <p class="font-weight-bold sidePara sidePara">Maciej Korsan</p>
+                  <p class="font-weight-normal text-muted sidePara">Students are not that big When students are in school the are kept under the supervision of the teachers do the do all things with decipline but when a student goes to college after passing school in tenth grade, The become free but do Nat have a stable and matured enough mind to take own decisions and some even do not know how cautiously one should spend money so the need more survelance so need uniform to make them feel that they are not to big as yet to take independent decision of what clothes to wear</p>
+              </div>
+          </div>
+          <!-- reply thread -->
+          <div class="row mx-2 my-2 replyThreadBox">
+              <!-- comment option -->
+              <div class="col-12">
+                  <p class="font-weight-normal text-muted sidePara p-small">Liked</p>
+                  <p class="font-weight-normal text-muted sidePara p-small">Reply</p>
+                  <p class="font-weight-normal text-muted sidePara p-small">3h</p>
+                  <p class="font-weight-normal text-muted sidePara p-small">3 likes</p>
+              </div>
+
+              <!-- hide replies -->
+              <div class="col-12 my-2">
+                  <p class="font-weight-normal text-muted sidePara"
+                      style="font-weight: bold !important; font-size: 12px !important;">Hide Replies</p>
+              </div>
+
+              <!-- reply person -->
+              <div class="col-12 my-1">
+                  <i class="far fa-user-circle fa-lg"></i>
+                  <p class="font-weight-bold sidePara sidePara">Pawel Kadysz</p>
+                  <p class="font-weight-normal text-muted sidePara">Very Accurate.</p>
+                  <!-- comment option -->
+                  <div>
+                      <p class="font-weight-normal text-muted sidePara p-small">Edit</p>
+                      <p class="font-weight-normal text-muted sidePara p-small">Reply</p>
+                      <p class="font-weight-normal text-muted sidePara p-small">3h</p>
+                      <p class="font-weight-normal text-muted sidePara p-small">3 likes</p>
+                  </div>
+              </div>
+
+              <!-- reply person -->
+              <div class="col-12 my-1">
+                  <i class="far fa-user-circle fa-lg"></i>
+                  <p class="font-weight-bold sidePara sidePara">Mrs. Ginger</p>
+                  <p class="font-weight-normal text-muted sidePara">You need to learn to dress for Success As I walk down the street at my college, </p>
+                  <!-- comment option -->
+                  <div>
+                      <p class="font-weight-normal text-muted sidePara p-small">Like</p>
+                      <p class="font-weight-normal text-muted sidePara p-small">Reply</p>
+                      <p class="font-weight-normal text-muted sidePara p-small">3min</p>
+                      <p class="font-weight-normal text-muted sidePara p-small">2 likes</p>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+
+  <!-- end of main -->
+</div>
+
 
 <!-- <div class="panel">
     <div class="panel-body">
