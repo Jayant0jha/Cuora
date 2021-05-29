@@ -26,9 +26,26 @@ export class PostsService {
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
-      // , switchMap((post:any) => 
-      // this.db.collection("Users").doc(post.created_by).get().pipe(
-      //   map((user:any) => ({...post, userName: user.}))))
+      // , switchMap((posts: any[]) => {
+      //   return posts.map((post:any) => {
+      //     this.fetchComments(post.id).pipe(
+      //       map((comments:any) => ({...post, comments})))
+      //   })
+      // })
+    )
+  }
+
+  fetchComments(postId) {
+    console.log(postId)
+    return this.db
+    .collection("Comments",  ref=>ref.where('post_id', '==', postId))
+    .snapshotChanges()
+    .pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
     )
   }
 

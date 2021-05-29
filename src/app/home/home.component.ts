@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   currUserId;
   currUserName;
   content = new FormControl('', [Validators.required]);
-  commentsFrom: FormGroup;
+  commentsForm: FormGroup;
   comments: FormArray;
   // comment = new FormControl('', [Validators.required]);
   isLoading = false;
@@ -50,9 +50,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentUserName();
     this.getPosts();
-    this.commentsFrom = this.formBuilder.group({
+    this.commentsForm = this.formBuilder.group({
       comments: this.formBuilder.array([])
     })
+    console.log(this.commentsForm);
   }
 
   share(){
@@ -170,6 +171,14 @@ export class HomeComponent implements OnInit {
     this.postsService.fetchPosts().subscribe(res=>{
       this.isLoading = false;
       this.feed = res
+      this.feed.map((post:any) => {
+        this.postsService.fetchComments(post.id).subscribe(
+          (res) => {
+            post['comments'] = res;
+            // console.log(post);
+          }
+        )
+      })
       console.log(this.feed);
       this.buildCommentsForm();
       //this.eventsFromDb.sort((a, b) => a.Date.localeCompare(b.Date))
@@ -177,12 +186,12 @@ export class HomeComponent implements OnInit {
   }
 
   buildCommentsForm() {
-    this.commentsFrom = this.formBuilder.group({
+    this.commentsForm = this.formBuilder.group({
       comments: this.formBuilder.array([])
     })
     // this.commentsFrom = this.formBuilder.array([]);
     this.createItems();
-    console.log(this.commentsFrom)
+    console.log(this.commentsForm)
   }
 
   createItems() {
@@ -192,13 +201,13 @@ export class HomeComponent implements OnInit {
   }
 
   addItem() {
-    this.comments = this.commentsFrom.get('comments') as FormArray;
+    this.comments = this.commentsForm.get('comments') as FormArray;
     this.comments.push(this.createItem());
   }
 
   createItem(): FormGroup {
     return this.formBuilder.group({
-      mainComment: ['']
+      mainComment: ['', Validators.required]
     })
   }
 
@@ -212,36 +221,32 @@ export class HomeComponent implements OnInit {
   }
 
 
-  addComment(post) {
-    if(this.content.valid) {
+  addComment(i) {
+    const commentControl = this.commentsForm.get(['comments', i, 'mainComment'])
+    console.log(commentControl);
+    if(commentControl.valid) {
       const req = {
-        content: this.content.value,
+        comment: commentControl.value,
         created_by: this.currUserId,
         creator: this.currUserName,
         created_on: (new Date()),
-        image: this.imageUrl || null
+        post_id: this.feed[i].id,
+        parent: null
       };
-      console.log(req, this.content.value);
-      this.postsService.addPost(req).then(
+      console.log(req);
+      this.postsService.addComment(req).then(
         () => {
-          this.utilsService.displayToast("Post created successfully!");
-          this.imageUrl = '';
-          this.content.reset();
-          this.url = ""
+          this.utilsService.displayToast("Comment added!");
+          this.commentsForm.get(['comments', i, 'mainComment']).reset();
           this.isLoading = false;
-
-          // this.content.
         }
       ).catch((err) => {
         this.utilsService.displayToast(err);
         this.isLoading = false;
-        
       });
-      
     } else {
-      this.utilsService.displayToast("Please add content for the post!");
+      this.utilsService.displayToast("Please add content for the comment!");
       this.isLoading = false;
-
     }
   }
 }
