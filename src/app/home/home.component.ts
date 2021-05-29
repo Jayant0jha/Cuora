@@ -1,6 +1,6 @@
 import { PostsService } from './../services/posts.service';
 import { UtilsService } from './../services/utils.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from "@angular/fire/storage";
 import { map, finalize } from "rxjs/operators";
@@ -8,6 +8,7 @@ import { map, finalize } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { AuthServiceService } from '../auth-service.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,9 @@ export class HomeComponent implements OnInit {
   currUserId;
   currUserName;
   content = new FormControl('', [Validators.required]);
+  commentsFrom: FormGroup;
+  comments: FormArray;
+  // comment = new FormControl('', [Validators.required]);
   isLoading = false;
   feed;
 
@@ -38,13 +42,17 @@ export class HomeComponent implements OnInit {
     public auth:AuthServiceService,
     public db: AngularFirestore,
     private utilsService: UtilsService,
-    private postsService: PostsService) {
+    private postsService: PostsService,
+    private formBuilder: FormBuilder) {
     
    }
 
   ngOnInit(): void {
     this.getCurrentUserName();
     this.getPosts();
+    this.commentsFrom = this.formBuilder.group({
+      comments: this.formBuilder.array([])
+    })
   }
 
   share(){
@@ -112,6 +120,7 @@ export class HomeComponent implements OnInit {
       const req = {
         content: this.content.value,
         created_by: this.currUserId,
+        creator: this.currUserName,
         created_on: (new Date()),
         image: this.imageUrl || null
       };
@@ -162,8 +171,35 @@ export class HomeComponent implements OnInit {
       this.isLoading = false;
       this.feed = res
       console.log(this.feed);
+      this.buildCommentsForm();
       //this.eventsFromDb.sort((a, b) => a.Date.localeCompare(b.Date))
     }, err => this.utilsService.displayToast(err))
+  }
+
+  buildCommentsForm() {
+    this.commentsFrom = this.formBuilder.group({
+      comments: this.formBuilder.array([])
+    })
+    // this.commentsFrom = this.formBuilder.array([]);
+    this.createItems();
+    console.log(this.commentsFrom)
+  }
+
+  createItems() {
+    for (let index = 0; index < this.feed.length; index++) {
+      this.addItem()
+    }
+  }
+
+  addItem() {
+    this.comments = this.commentsFrom.get('comments') as FormArray;
+    this.comments.push(this.createItem());
+  }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      mainComment: ['']
+    })
   }
 
   editPost() {
@@ -173,5 +209,39 @@ export class HomeComponent implements OnInit {
   removePost() {
     //TODO:integrate service function deletePost
 
+  }
+
+
+  addComment(post) {
+    if(this.content.valid) {
+      const req = {
+        content: this.content.value,
+        created_by: this.currUserId,
+        creator: this.currUserName,
+        created_on: (new Date()),
+        image: this.imageUrl || null
+      };
+      console.log(req, this.content.value);
+      this.postsService.addPost(req).then(
+        () => {
+          this.utilsService.displayToast("Post created successfully!");
+          this.imageUrl = '';
+          this.content.reset();
+          this.url = ""
+          this.isLoading = false;
+
+          // this.content.
+        }
+      ).catch((err) => {
+        this.utilsService.displayToast(err);
+        this.isLoading = false;
+        
+      });
+      
+    } else {
+      this.utilsService.displayToast("Please add content for the post!");
+      this.isLoading = false;
+
+    }
   }
 }

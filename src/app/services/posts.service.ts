@@ -2,7 +2,7 @@ import { UtilsService } from './utils.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,9 @@ export class PostsService {
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
+      // , switchMap((post:any) => 
+      // this.db.collection("Users").doc(post.created_by).get().pipe(
+      //   map((user:any) => ({...post, userName: user.}))))
     )
   }
 
@@ -36,6 +39,14 @@ export class PostsService {
 
   deletePost(id) {
     return this.db.collection("Posts").doc(id).delete()
+  }
+
+  getUserById(id) {
+    return this.db.collection("Users").doc(id).get();
+  }
+
+  addComment(req) {
+    return this.db.collection("Comments").add(req);
   }
 }
  
