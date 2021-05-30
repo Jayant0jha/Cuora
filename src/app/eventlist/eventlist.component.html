@@ -2,6 +2,7 @@
   <!-- <mat-spinner ></mat-spinner> -->
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
+
 <div class="create-event" style="height: 93%; overflow-y: scroll;" >
     <h1 style="color: indigo; font-weight: 500; width: 100%;">{{eventHeading}}</h1>
     <div fxLayout="row wrap" fxLayoutAlign="space-between center" *ngIf="eventsFromDb?.length==0 && !showLoader">

@@ -28,7 +28,7 @@ export class EventscardComponent implements OnInit {
   public addEventFormGroup: FormGroup
 
 
-  editedEvent = {Title: "", Desc: "", Venue: "", Date: null, Yes: [], No: [], CreatedBy: "", CreatedById: ""}
+  editedEvent = {Title: "", Desc: "", Venue: "", Date: null, Time: null, Yes: [], No: [], CreatedBy: "", CreatedById: ""}
   
   constructor(public db: AngularFirestore, public auth: AuthServiceService, public _snackbar: MatSnackBar, public eventService: EventServiceService) { }
 
@@ -113,7 +113,8 @@ export class EventscardComponent implements OnInit {
       eventTitle : new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
       eventDesc: new FormControl('', [Validators.required]),
       eventVenue: new FormControl('', [Validators.required]),
-      eventDate: new FormControl('', [Validators.required])
+      eventDate: new FormControl('', [Validators.required]),
+      eventTime: new FormControl('', [Validators.required])
     });
     this.editedEvent = {...this.e};
 
@@ -126,8 +127,13 @@ export class EventscardComponent implements OnInit {
 
   updateEvent(){
     if (this.addEventFormGroup.valid) {
-      this.editedEvent.Date = this.editedEvent.Date.toDate()
-      this.db.collection("Events").doc(this.e.id).set(this.editedEvent)
+      console.log(this.editedEvent.Date)
+
+      //check if date is changed
+      if(this.editedEvent.Date._isAMomentObject)
+        this.editedEvent.Date = this.editedEvent.Date.toDate()
+      
+        this.db.collection("Events").doc(this.e.id).set(this.editedEvent)
       this.isformvisible = !this.isformvisible
       //show snackbar
       let snackBarRef = this._snackbar.open("Event updated successfully!")

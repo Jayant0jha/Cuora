@@ -14,6 +14,7 @@
       <div class="eventData" style="white-space: pre-wrap"><i>Description: </i>{{e.Desc}}</div>
       <div class="eventData"><i>Venue: </i>{{e.Venue}}</div>
       <div class="eventData"><i>Date: </i>{{e.Date.toDate() | date}}</div>
+      <div class="eventData"><i>Time: </i>{{e.Time}}</div>
       <hr>
       <div class="eventData" style="color: grey; font-size: 12px;"><i>Created By: </i>{{e.CreatedBy}}</div>
       <div class="eventData" style="color: grey; font-size: 12px; margin-top: -1px;" ><i>Attending: </i>{{e.Yes.length}}</div>
@@ -73,6 +74,13 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="checkError('eventDate', 'required')">Event date is required</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Choose time</mat-label>
+        <input matInput [ngxTimepicker]="picker2" [(ngModel)]="editedEvent.Time" formControlName="eventTime">
+        <ngx-material-timepicker #picker2></ngx-material-timepicker>
+        <mat-error *ngIf="checkError('eventTime', 'required')">Event time is required</mat-error>
       </mat-form-field>
       <br>
 
