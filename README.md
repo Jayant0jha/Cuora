@@ -1,6 +1,20 @@
-# CtaeForum
+# Cuora
+Feel free to test and experience app yourself by clicking [here](https://ctae-forum.web.app/myevents)
+## About the Project: 
+Cuora is an open source college discussion forum which will allow students to post notice or information related to college events. Under every post, the students can openly have discussion or clarify their doubts. The forum will also allow the students to create an event reminder. 
+Additionally, since a lot of learning and knowledge sharing happens during discussions such an application which provides students a platform can be really very beneficial in learning and knowledge sharing. It provides both students and teachers an interactive platform to connect. People (i.e., students and teachers) and administration authority can easily post about various upcoming events, programs, competition etc all in one place. Also, the application provides the functionality to save information regarding any event for a certain period of time, so that the useful and necessary information does not get lost and a maximum number of students can utilize the opportunities which come their way and which brings value and skill addition to them. 
+It is an attempt to bring a virtual college life experience through a web application.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
+## Technology Stack
+- Angular 10
+- TypeScript
+- HTML
+- SCSS
+- Firestore DB
+- Firebase Authentication and Hosting
+- Angular Material
+- Bootstrap
+
 
 ## Development server
 
@@ -13,14 +27,6 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
